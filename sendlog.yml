@@ -1,0 +1,12 @@
+---
+- hosts: test
+#- hosts: xhs
+  remote_user: zyadmin
+  sudo: yes
+  tasks: 
+#    - name: test
+#      ping:
+    - name: cp /etc/apt/sources.list.d/nginx.list
+      copy: src=files/nginx.list dest=/etc/apt/sources.list.d/nginx.list
+    - name: upgrade nginx to 1.8.0
+      apt: name=nginx state=latest update_cache=yes
